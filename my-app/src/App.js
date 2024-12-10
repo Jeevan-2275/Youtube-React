@@ -1,54 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const App = () => {
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const API_KEY = 'AIzaSyBZ9-v4uf_BpxVvty0uolN7ohRpedhw9Vg'; 
+const BASE_URL = 'https://www.googleapis.com/youtube/v3';
 
-  const API_KEY = 'AIzaSyDwkxqOL9_InKNDMyxKDpZeIpF1VnZ_Suw';  
-  const CHANNEL_ID = 'https://www.youtube.com/channel/UCWAKiFSwXsoBpvzV8L_0pVg';   
-  useEffect(() => {
-    const fetchVideoData = async () => {
-      try {
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${AIzaSyDwkxqOL9_InKNDMyxKDpZeIpF1VnZ_Suw}&channelId=${'https://www.youtube.com/channel/UCWAKiFSwXsoBpvzV8L_0pVg'}&part=snippet&type=video&maxResults=10`);
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch video data');
-        }
-        
-        const data = await response.json();
-        setVideos(data.items); 
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
 
-    fetchVideoData();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div>
-      <h1>Static YouTube Clone</h1>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
-        {videos.map((video) => (
-          <div key={video.id.videoId} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px' }}>
-            <h2>{video.snippet.title}</h2>
-            <p>{video.snippet.description}</p>
-            <button>
-              <a href={`https://www.youtube.com/watch?v=${video.id.videoId}`} target="_blank" rel="noopener noreferrer">
-                Watch Now
-              </a>
-            </button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+export const fetchVideos = async (query) => {
+  try {
+    const response = await axios.get(`${'https://www.googleapis.com/youtube/v3'}/search`, {
+      params: {
+        part: 'snippet',
+        maxResults: 10,
+        q: query, 
+        key: API_KEY,
+      },
+    });
+    return response.data.items; // Array of video objects
+  } catch (error) {
+    console.error('Error fetching videos:', error);
+    return [];
+  }
 };
 
-export default App;
+// Fetch popular videos (e.g., on the home page)
+export const fetchPopularVideos = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/videos`, {
+      params: {
+        part: 'snippet,contentDetails,statistics',
+        chart: 'mostPopular',
+        maxResults: 10,
+        regionCode: 'US', // You can change the region
+        key: API_KEY,
+      },
+    });
+    return response.data.items; // Array of popular videos
+  } catch (error) {
+    console.error('Error fetching popular videos:', error);
+    return [];
+  }
+};

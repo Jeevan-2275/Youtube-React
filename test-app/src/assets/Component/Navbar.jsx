@@ -21,7 +21,9 @@ function Navbar() {
 
  <div> 
 <div>
-<div className="search">Search</div>
+<div className="search">
+<input type="search"  placeholder="Search for videos" />
+</div>
  <div>
   <img
     className="mark"

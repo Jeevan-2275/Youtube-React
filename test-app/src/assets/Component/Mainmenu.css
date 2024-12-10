@@ -1,10 +1,10 @@
 .video-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-    margin-left: 288px;
-    margin-top: -176px;
+  display: flex  ;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      margin-left: 288px;
+      margin-top: 3px;
 
   }
   

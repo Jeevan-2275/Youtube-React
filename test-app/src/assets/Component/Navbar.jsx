@@ -19,10 +19,10 @@ function Navbar() {
     return(
 
 
-
+ <div> 
 <div>
 <div className="search">Search</div>
-<div>
+ <div>
   <img
     className="mark"
     src="https://github.com/PatelNeelMahesh/frontend_tasks/blob/a13580378d0b069a01444a65219224700691e411/02.youtube-clone/assets/search.png?raw=true"
@@ -66,8 +66,12 @@ function Navbar() {
   />
 </div>
 
+ 
 
 
+</div>
+
+<div>
 <div className="att">
 
 {sugestion.map((i)=>(
@@ -78,12 +82,8 @@ function Navbar() {
 ))}
 </div>
   
-
 </div>
-
-
-
-
+</div>
 
 )
 };

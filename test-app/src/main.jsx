@@ -8,14 +8,15 @@ import  Mainmenu  from './assets/Component/Mainmenu.jsx'
 // import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
-
+  <div className="body">
   <StrictMode>
 
     {/* <App /> */}
-    <div className="body">
+ 
     <Sidebar />
 <Navbar />
 <Mainmenu />
-    </div>
+  
   </StrictMode>,
+  </div>
 )

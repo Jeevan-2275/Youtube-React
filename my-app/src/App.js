@@ -10,14 +10,14 @@ const App = () => {
   useEffect(() => {
     const fetchVideoData = async () => {
       try {
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&maxResults=10`);
+        const response = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${AIzaSyDwkxqOL9_InKNDMyxKDpZeIpF1VnZ_Suw}&channelId=${'https://www.youtube.com/channel/UCWAKiFSwXsoBpvzV8L_0pVg'}&part=snippet&type=video&maxResults=10`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch video data');
         }
         
         const data = await response.json();
-        setVideos(data.items); // Store video items
+        setVideos(data.items); 
         setLoading(false);
       } catch (err) {
         setError(err.message);

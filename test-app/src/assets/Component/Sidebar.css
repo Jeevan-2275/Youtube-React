@@ -1,4 +1,4 @@
-/* .A{
+.A{
     display: flex;
   flex-direction: column;
   justify-content: start;
@@ -28,4 +28,4 @@
   }
   .dash{  
     margin-top: -35px;
-  } */
+  }
